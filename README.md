@@ -1,5 +1,9 @@
 # StayCompetitiveAlgorithm
-Just Staying competitive for Career, [Algorithm] part !
+> Just staying competitive -> **[*Algorithm*]**
+
+## Roadmap
+
+![](./roadmap.png)
 
 ## Naming prefix
 
@@ -13,4 +17,6 @@ Just Staying competitive for Career, [Algorithm] part !
 ## Updating Rules
 
 1. Update `xmind` file
-2. Add new files
+2. Add new `python` files
+3. Export `PGN` for `xmind`
+
