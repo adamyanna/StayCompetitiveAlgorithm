@@ -43,7 +43,6 @@ class Codec:
                 string += str(node.val) + ","
                 string = recursive_serializer(node.left, string)
                 string = recursive_serializer(node.right, string)
-            print(string)
             return string
 
         return recursive_serializer(root, '')
@@ -74,3 +73,20 @@ class Codec:
 # codec = Codec()
 # codec.deserialize(codec.serialize(root))
 # @lc code=end
+
+if __name__ == '__main__':
+    # "1,2,3,null,null,4,5"
+    #         1
+    #     2       3
+    # null null 4  5
+    root = TreeNode("1")
+    root.left = TreeNode("2")
+    root.right = TreeNode("3")
+    root.right.left = TreeNode("4")
+    root.right.right = TreeNode("5")
+
+    codec = Codec()
+    print(codec.serialize(root))
+    result = codec.deserialize(codec.serialize(root))
+    print("finish")
+
