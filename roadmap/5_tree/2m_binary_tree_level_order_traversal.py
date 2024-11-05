@@ -114,14 +114,6 @@ class Solution(object):
             if node:
                 current_level_result.append(node.val)
 
-            if len(current_level_result) == 2 ** len(result) - (last_null * 2 + cache_null):
-                last_null = last_null * 2 + cache_null
-                cache_null = next_null
-                next_null = 0
-                # update result for every level
-                result.append(current_level_result[:])
-                current_level_result = []
-
             if node.left:
                 q.put(node.left)
             else:
@@ -130,6 +122,15 @@ class Solution(object):
                 q.put(node.right)
             else:
                 next_null += 1
+
+            if len(current_level_result) == 2 ** len(result) - (last_null * 2 + cache_null):
+                last_null = last_null * 2 + cache_null
+                cache_null = next_null
+                next_null = 0
+                # update result for every level
+                result.append(current_level_result[:])
+                current_level_result = []
+
         return result
 
 
@@ -138,18 +139,21 @@ if __name__ == '__main__':
     root = s.array_to_tree_dfs_pre_order([3,9,"null","null",20,15,"null","null",7,1,"null","null",2,"null","null"])
     print(Solution().bfs_b_tree(root))
 
+    root4 = s.array_to_tree_dfs_pre_order([1,2,"null","null","null"])
+    print(Solution().bfs_b_tree(root4))
+
     """
         1
      2    3
     4 5  6 7
     """
 
-    root1 = s.array_to_tree_bfs([1,2,3,4,5,6,7])
-    print(s.bfs_b_tree(root1))
-    print(s.test_dfs_pre_order(root1))
-
-    root2 = s.array_to_tree_dfs_pre_order_2([1,2,4,5,3,6,7])
-    print(s.test_dfs_pre_order(root2))
-
-    root3 = s.array_to_tree_dfs_pre_order([1,2,4,"null","null",5,"null","null",3,6,"null","null",7,"null","null"])
-    print(s.test_dfs_pre_order(root3))
+    # root1 = s.array_to_tree_bfs([1,2,3,4,5,6,7])
+    # print(s.bfs_b_tree(root1))
+    # print(s.test_dfs_pre_order(root1))
+    #
+    # root2 = s.array_to_tree_dfs_pre_order_2([1,2,4,5,3,6,7])
+    # print(s.test_dfs_pre_order(root2))
+    #
+    # root3 = s.array_to_tree_dfs_pre_order([1,2,4,"null","null",5,"null","null",3,6,"null","null",7,"null","null"])
+    # print(s.test_dfs_pre_order(root3))
