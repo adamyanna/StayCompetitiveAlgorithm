@@ -134,6 +134,40 @@ class Solution3(object):
 
         return deserializer()
 
+    def deserialize_string_to_b_tree_by_bfs(self, s_string):
+
+        array = s_string.split(",")
+
+        if array[0] == "null":
+            return None
+        root = BTreeNode(array[0])
+
+        t_q = queue.Queue()
+        t_q.put(root)
+
+        index = 1
+        while index < len(array) and not t_q.empty():
+
+            node = t_q.get()
+            # construct left
+            if array[index] != "null":
+                node.left = BTreeNode(array[index])
+                t_q.put(node.left)
+            else:
+                node.left = None
+            index += 1
+
+            # construct right
+            if index < len(array):
+                if array[index] != "null":
+                    node.right = BTreeNode(array[index])
+                    t_q.put(node.right)
+                else:
+                    node.right = None
+                index += 1
+
+        return root
+
     def bfs(self, root):
         bfs_result = []
         tree_queue = queue.Queue()
@@ -383,6 +417,8 @@ if __name__ == '__main__':
     #       4   5
     s = Solution3()
     root = s.deserialize_string_to_b_tree("1,2,null,null,3,4,null,null,5,null,null")
+    root2 = s.deserialize_string_to_b_tree_by_bfs("1,2,3,null,5,6,7")
+
     # do bfs to root
     print("bfs: ", s.bfs(root))
     # do pre dfs
