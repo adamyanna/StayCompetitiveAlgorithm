@@ -14,6 +14,14 @@
 # 2. put -> key 不存在，创建新的node，更新 hash，判断容量，否则node移动到head，是则删除tail.prev，存在则直接更新v，并移动到head
 """
 
+
+##############################
+# LRU cache
+# 1. DOUBLE dir link, Head LRU, Tail Oldest
+# 2. Hash Map size link's node
+# 3. LRU-> PUT/GET, DoubleLink-> MoveToHead/AddToHead/RemoveNode/RemoveTail
+##############################
+
 # 定义一个双向链表
 class DLinkedNode:
     def __init__(self, key=0, value=0):
@@ -100,8 +108,6 @@ class LRUCache:
         node = self.tail.prev
         self.removeNode(node)
         return node
-
-
 
 # Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.
 

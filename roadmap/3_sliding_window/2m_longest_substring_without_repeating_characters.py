@@ -39,6 +39,6 @@ class Solution(object):
                 no_repeat_c.add(s[rptr + 1])
                 rptr += 1
 
-            result = max(result, rptr - lptr)
+            result = max(result, rptr - lptr + 1)
 
         return result
